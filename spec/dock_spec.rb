@@ -64,16 +64,16 @@ RSpec.describe 'Dock' do
     dock.rent(kayak_2, patrick)
     dock.rent(sup_1, eugene)
 
-    kayak_1.add_hour
-    kayak_1.add_hour
+    sup_1.add_hour
+    sup_1.add_hour
+    sup_1.add_hour
+
+    charge = dock.charge(sup_1)
+    expect(charge[:amount]).to eq(45)
+
     kayak_1.add_hour
 
-    charge = dock.charge(kayak_1)
-    expect(charge[:amount]).to eq(60)
-
-    kayak_1.add_hour
-
-    charge = dock.charge(kayak_1)
-    expect(charge[:amount]).to eq(60)
+    charge = dock.charge(sup_1)
+    expect(charge[:amount]).to eq(45)
   end
 end
